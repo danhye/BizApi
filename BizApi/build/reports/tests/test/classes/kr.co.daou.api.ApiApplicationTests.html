@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ApiApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ApiApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/kr.co.daou.api.html">kr.co.daou.api</a> &gt; ApiApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.234s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">contextLoads()</td>
+<td class="success">0.234s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2024-08-05 16:08:10,592 Test worker WARN No Root logger was configured, creating default ERROR-level Root logger with Console appender
+2024-08-05T16:08:10,660 INFO  [Test worker] o.s.t.c.s.AbstractTestContextBootstrapper: Neither @ContextConfiguration nor @ContextHierarchy found for test class [kr.co.daou.api.ApiApplicationTests], using SpringBootContextLoader
+2024-08-05T16:08:10,676 INFO  [Test worker] o.s.t.c.s.AbstractContextLoader: Could not detect default resource locations for test class [kr.co.daou.api.ApiApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2024-08-05T16:08:10,676 INFO  [Test worker] o.s.t.c.s.AnnotationConfigContextLoaderUtils: Could not detect default configuration classes for test class [kr.co.daou.api.ApiApplicationTests]: ApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-08-05T16:08:10,729 INFO  [Test worker] o.s.b.t.c.SpringBootTestContextBootstrapper: Found @SpringBootConfiguration kr.co.daou.api.ApiApplication for test class kr.co.daou.api.ApiApplicationTests
+2024-08-05T16:08:10,776 INFO  [Test worker] o.s.t.c.s.AbstractTestContextBootstrapper: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2024-08-05T16:08:10,797 INFO  [Test worker] o.s.t.c.s.AbstractTestContextBootstrapper: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@64d2da46, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3bbd931b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@36ab8e36, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4e67aa3a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3c15595a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6be72088, org.springframework.test.context.event.EventPublishingTestExecutionListener@1d7c9fc, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@72129586, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@64dbcd17, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@366a4264, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@9cdf57c, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6f95ef66, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@559c34f6]
+2024-08-05 16:08:10,943 Test worker INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+2024-08-05 16:08:10,944 Test worker WARN No Root logger was configured, creating default ERROR-level Root logger with Console appender
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.4.11)
+
+2024-08-05T16:08:10,992 INFO  [Test worker] o.s.b.StartupInfoLogger: Starting ApiApplicationTests using Java 15.0.10 on daou-danae with PID 4744 (started by daou-danae in C:\Users\danae\Desktop\Homework)
+2024-08-05T16:08:10,995 INFO  [Test worker] o.s.b.SpringApplication: No active profile set, falling back to default profiles: default
+2024-08-05T16:08:12,145 INFO  [Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping: Adding welcome page: class path resource [static/index.html]
+2024-08-05T16:08:12,445 INFO  [Test worker] o.s.b.StartupInfoLogger: Started ApiApplicationTests in 1.625 seconds (JVM running for 2.49)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.9.1</a> at 2024. 8. 5. 오후 4:08:13</p>
+</div>
+</div>
+</body>
+</html>
