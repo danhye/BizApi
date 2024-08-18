@@ -1,5 +1,6 @@
 package kr.co.daou.api.service;
 
+import kr.co.daou.api.vo.ButtonVO;
 import kr.co.daou.api.vo.MessageVO;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -14,12 +15,13 @@ import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.List;
 
 public class SendKakaoService {
-    MessageVO vo = new MessageVO();
+    // MessageVO vo = new MessageVO();
     TokenTestService tok = new TokenTestService();
-    String request;
-    public String sendKakaoAT(String refkey, String to, String message, String senderkey, String templatecode, String button_name, String button_type, String url_pc, String url_mobile) {
+    // String request;
+    public String sendKakaoAT(MessageVO vo) {
         String input = null;
         StringBuffer result = new StringBuffer();
         String token = tok.getToken();
@@ -47,7 +49,7 @@ public class SendKakaoService {
            
             //개발
             url = new URL("https://dev-api.bizppurio.com:10443/v3/message");
-            //*/
+
             
             //운영
             //url = new URL("https://api.bizppurio.com/v3/message");
@@ -64,13 +66,18 @@ public class SendKakaoService {
             connection.setUseCaches(false);
             connection.setConnectTimeout(15000);
 
+            // JSON 요청 생성
+            String request = createJsonRequest(vo);
+
             /** Request **/
             OutputStream os = connection.getOutputStream();
+            /*
             if (button_name.equals("null")){
                 request = "{\"account\":\"" + vo.getAccount() + "\", \"refkey\":\"" + refkey + "\", \"type\":\"at\", \"from\":\"" + vo.getFrom() + "\", \"to\":\"" + to + "\", \"content\":{\"at\":{\"senderkey\":\"" + senderkey + "\", \"templatecode\":\"" + templatecode + "\", \"message\":\"" + message + "\"}}}";
             }else if (!button_name.equals("null")){
                 request = "{\"account\":\"" + vo.getAccount() + "\", \"refkey\":\"" + refkey + "\", \"type\":\"at\", \"from\":\"" + vo.getFrom() + "\", \"to\":\"" + to + "\", \"content\":{\"at\":{\"senderkey\":\"" + senderkey + "\", \"templatecode\":\"" + templatecode + "\", \"message\":\"" + message + "\",\"button\":[{\"name\":\"" + button_name + ", \"type\":\"" + button_type + ", \"url_pc\":\"" + url_pc + ", \"url_mobile\"" + url_mobile + "}]}}}";
             }
+             */
             System.out.println("전송 json : " + request);
             os.write(request.getBytes("UTF-8"));
             os.flush();
@@ -94,5 +101,54 @@ public class SendKakaoService {
             e.printStackTrace();
         }
         return result.toString();
+    }
+
+    private String createJsonRequest(MessageVO vo){
+        StringBuilder requestBuilder = new StringBuilder();
+        requestBuilder.append("{");
+        requestBuilder.append("\"account\":\"").append(vo.getAccount());
+        requestBuilder.append("\"refkey\":\"").append(vo.getRefkey());
+        requestBuilder.append("\"type\":\"").append(vo.getType());
+        requestBuilder.append("\"from\":\"").append(vo.getFrom());
+        requestBuilder.append("\"to\":\"").append(vo.getTo());
+        requestBuilder.append("\"content\":{");
+        //content 시작
+        if("at".equals(vo.getType())){
+            requestBuilder.append("\"at\":{");
+            requestBuilder.append("\"senderkey\":\"").append(vo.getSenderkey()).append("\",");
+            requestBuilder.append("\"templatecode\":\"").append(vo.getTemplatecode()).append("\",");
+            requestBuilder.append("\"message\":\"").append(vo.getMessage()).append("\",");
+
+            List<ButtonVO> buttons = vo.getButtons();
+            if (buttons != null && !buttons.isEmpty()) {
+                requestBuilder.append("\"button\":[");
+                for (int i = 0; i < buttons.size(); i++) {
+                    ButtonVO button = buttons.get(i);
+                    requestBuilder.append("{");
+                    requestBuilder.append("\"name\":\"").append(button.getName()).append("\",");
+                    requestBuilder.append("\"type\":\"").append(button.getType()).append("\",");
+                    if ("WL".equals(button.getType())) {
+                        requestBuilder.append("\"url_pc\":\"").append(button.getUrl_pc()).append("\",");
+                        requestBuilder.append("\"url_mobile\":\"").append(button.getUrl_mobile()).append("\"");
+                    }
+                    else if ("AL".equals(button.getType())) {
+                        requestBuilder.append("\"scheme_android\":\"").append(button.getScheme_android()).append("\",");
+                        requestBuilder.append("\"scheme_ios\":\"").append(button.getScheme_ios()).append("\"");
+                    }
+                    requestBuilder.append("}");
+                    if (i < buttons.size() - 1) {
+                        requestBuilder.append(",");
+                    }
+                }
+                requestBuilder.append("]");
+            }
+            requestBuilder.append("}");
+        }else{
+            //type = ai
+        }
+        requestBuilder.append("}");
+        //content 끝
+        requestBuilder.append("}");
+        return requestBuilder.toString();
     }
 }

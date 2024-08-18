@@ -1,5 +1,6 @@
 package kr.co.daou.api.service;
 
+import kr.co.daou.api.vo.ButtonVO;
 import kr.co.daou.api.vo.MessageVO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -110,13 +111,13 @@ public class RequestService {
     }
 
     public String makeAtRequest(MessageVO vo) {
-        JSONArray buttonArray = new JSONArray();
         requiredObject.put("account", vo.getAccount());
         requiredObject.put("type", vo.getType());
         requiredObject.put("refkey", vo.getRefkey());
         requiredObject.put("from", vo.getFrom());
         requiredObject.put("to", vo.getTo());
-
+        /*
+        JSONArray buttonArray = new JSONArray();
         if(!vo.getFirstButton().equals("null")){
             buttonArray.add(vo.getFirstButton());
             if(!vo.getSecondButton().equals("null")){
@@ -135,7 +136,48 @@ public class RequestService {
         }else{
             sb.append("{\"" + vo.getType() + "\":{\"senderkey\":\"" + vo.getSenderkey() + "\", \"templatecode\":\"" + vo.getTemplatecode() + "\", \"message\":\"" + vo.getMessage() + "\"}}");
         }
-        requiredObject.put("content", sb);
+        */
+
+        JSONArray buttonArray = new JSONArray();
+        for (ButtonVO button : vo.getButtons()){
+            JSONObject buttonObject = new JSONObject();
+            buttonObject.put("name",button.getName());
+            buttonObject.put("type",button.getType());
+
+            //버튼 타입에 따라 필드 입력
+            if("WL".equals(button.getType())){
+                //웹링크
+                buttonObject.put("url_pc", button.getUrl_pc());
+                buttonObject.put("url_mobile", button.getUrl_mobile());
+            }else if("AL".equals(button.getType())){
+                //앱링크
+                buttonObject.put("scheme_android", button.getScheme_android());
+                buttonObject.put("scheme_ios", button.getScheme_ios());
+            }else if("BC".equals(button.getType())){
+                //상담톡
+                buttonObject.put("chat_extra", button.getChat_extra());
+            }else if("BT".equals(button.getType())){
+                //봇 전환
+                buttonObject.put("chat_extra", button.getChat_extra());
+                buttonObject.put("chat_event", button.getChat_event());
+            }
+            /*
+            else if("BF".equals(button.getType())){
+                //비즈폼
+            }
+            */
+            buttonArray.add(buttonObject);
+        }
+
+        JSONObject contentObject = new JSONObject();
+        contentObject.put("senderkey",vo.getSenderkey());
+        contentObject.put("templatecode",vo.getTemplatecode());
+        contentObject.put("message",vo.getMessage());
+        contentObject.put("button",buttonArray);
+
+        requiredObject.put("content",contentObject);
+
+        //requiredObject.put("content", sb);
         request = requiredObject.toJSONString();
         logger.info("Request : " + request);
         return request;

@@ -1,6 +1,8 @@
 package kr.co.daou.api.vo;
 
 import lombok.Data;
+import java.util.List;
+
 
 @Data
 public class MessageVO {
@@ -26,42 +28,174 @@ public class MessageVO {
     // AT/FT
     private String senderkey;
     private String templatecode;
-    //button
-    private String firstButton;
-    private String secondButton;
-    private String thirdButton;
-    private String fourthButton;
-    private String fifthButton;
+    //버튼 리스트
+    private List<ButtonVO> buttons;
 
-    //알림톡 표기
-    private String title;
+    public String getAccount() {
+        return account;
+    }
 
-    //알림톡 아이템리스트
-    private String header;
-    private String item1;
-    private String item2;
-    private String item3;
-    private String item4;
-    private String item5;
-    private String item6;
-    private String item7;
-    private String item8;
-    private String item9;
-    private String item10;
-    //아이템
-    private String item;
-    private String i_title;
-    private String i_description;
-    private String s_title;
-    private String s_description;
-    //아이템 하이라이트
-    private String itemhighlight;
-    private String ih_title;
-    private String ih_description;
-    private String ih_imageUrl;
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-    //이미지
-    private String img_url;
-    private String img_link;
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRefkey() {
+        return refkey;
+    }
+
+    public void setRefkey(String refkey) {
+        this.refkey = refkey;
+    }
+
+    public String getUserinfo() {
+        return userinfo;
+    }
+
+    public void setUserinfo(String userinfo) {
+        this.userinfo = userinfo;
+    }
+
+    public String getResend() {
+        return resend;
+    }
+
+    public void setResend(String resend) {
+        this.resend = resend;
+    }
+
+    public String getRecontent() {
+        return recontent;
+    }
+
+    public void setRecontent(String recontent) {
+        this.recontent = recontent;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getAttach1() {
+        return attach1;
+    }
+
+    public void setAttach1(String attach1) {
+        this.attach1 = attach1;
+    }
+
+    public String getAttach2() {
+        return attach2;
+    }
+
+    public void setAttach2(String attach2) {
+        this.attach2 = attach2;
+    }
+
+    public String getAttach3() {
+        return attach3;
+    }
+
+    public void setAttach3(String attach3) {
+        this.attach3 = attach3;
+    }
+
+    public String getFileKey1() {
+        return fileKey1;
+    }
+
+    public void setFileKey1(String fileKey1) {
+        this.fileKey1 = fileKey1;
+    }
+
+    public String getFileKey2() {
+        return fileKey2;
+    }
+
+    public void setFileKey2(String fileKey2) {
+        this.fileKey2 = fileKey2;
+    }
+
+    public String getFileKey3() {
+        return fileKey3;
+    }
+
+    public void setFileKey3(String fileKey3) {
+        this.fileKey3 = fileKey3;
+    }
+
+    public String getSenderkey() {
+        return senderkey;
+    }
+
+    public void setSenderkey(String senderkey) {
+        this.senderkey = senderkey;
+    }
+
+    public String getTemplatecode() {
+        return templatecode;
+    }
+
+    public void setTemplatecode(String templatecode) {
+        this.templatecode = templatecode;
+    }
+
+    public List<ButtonVO> getButtons() {
+        return buttons;
+    }
+
+    public void setButtons(List<ButtonVO> buttons) {
+        this.buttons = buttons;
+    }
 }

@@ -3,16 +3,16 @@ package kr.co.daou.api.controller;
 import io.swagger.annotations.*;
 import kr.co.daou.api.service.RequestService;
 import kr.co.daou.api.service.SendMessageAPI;
+import kr.co.daou.api.vo.ButtonVO;
 import kr.co.daou.api.vo.MessageVO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class BizppurioKakaoAtAPI {
-/*	
+
     @PostMapping(value = "/sendAlimtalk")
     @ApiOperation(value = "알림톡, 알림톡 이미지 발송 API", notes = "알림톡, 이미지 알림톡 발송을 하기 위한 API 입니다.")
     @ApiResponses({
@@ -26,11 +26,7 @@ public class BizppurioKakaoAtAPI {
                                @ApiParam(value = "메세지 내용", required = true) @RequestParam String d_message,
                                @ApiParam(value = "카카오 발신 프로필 키", required = true) @RequestParam String e_senderkey,
                                @ApiParam(value = "템플릿 코드", required = true) @RequestParam String f_templatecode,
-                               @ApiParam(value = "버튼 1", required = true) @RequestParam(defaultValue = "null") String g_button1,
-                               @ApiParam(value = "버튼 2", required = true) @RequestParam(defaultValue = "null") String h_button2,
-                               @ApiParam(value = "버튼 3", required = true) @RequestParam(defaultValue = "null") String i_button3,
-                               @ApiParam(value = "버튼 4", required = true) @RequestParam(defaultValue = "null") String j_button4,
-                               @ApiParam(value = "버튼 5", required = true) @RequestParam(defaultValue = "null") String k_button5
+                               @ApiParam(value = "버튼 정보", required = false) @RequestBody List<ButtonVO> buttons
     ) {
         MessageVO vo = new MessageVO();
         RequestService rq = new RequestService();
@@ -41,14 +37,13 @@ public class BizppurioKakaoAtAPI {
         vo.setMessage(d_message);
         vo.setSenderkey(e_senderkey);
         vo.setTemplatecode(f_templatecode);
-        vo.setFirstButton(g_button1);
-        vo.setSecondButton(h_button2);
-        vo.setThirdButton(i_button3);
-        vo.setFourthButton(j_button4);
-        vo.setFifthButton(k_button5);
-        return "";
-        //return send.sendAllMessage(rq.makeAtRequest(vo));
+        vo.setButtons(buttons);
+
+        //return "";
+        return send.sendMessage(rq.makeAtRequest(vo));
     }
+
+    /*
     @PostMapping(value = "/sendAlimtalkItem")
     @ApiOperation(value = "알림톡 아리템 LIST 발송 API", notes = "알림톡 ITEM LIST 발송을 하기 위한 API 입니다.")
     @ApiResponses({
@@ -95,5 +90,5 @@ public class BizppurioKakaoAtAPI {
         return "";
         //return send.sendAllMessage(rq.makeAtRequest(vo));
     }
-*/    
+*/
 }
