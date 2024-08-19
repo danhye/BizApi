@@ -26,9 +26,9 @@ kr/co/daou/api/vo/ButtonVO.java
 kr/co/daou/api/service/SendMessageAPI.java
  kr.co.daou.api.service.SendMessageAPI
  kr.co.daou.api.service.SendMessageAPI$1
-kr/co/daou/api/controller/BizppurioKakaoAtAPI.java
- kr.co.daou.api.controller.BizppurioKakaoAtAPI
-kr/co/daou/api/vo/MessageVO.java
- kr.co.daou.api.vo.MessageVO
 kr/co/daou/api/service/RequestService.java
  kr.co.daou.api.service.RequestService
+kr/co/daou/api/vo/MessageVO.java
+ kr.co.daou.api.vo.MessageVO
+kr/co/daou/api/controller/BizppurioKakaoAtAPI.java
+ kr.co.daou.api.controller.BizppurioKakaoAtAPI

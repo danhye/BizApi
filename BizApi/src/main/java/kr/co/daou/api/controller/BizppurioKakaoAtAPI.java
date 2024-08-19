@@ -22,11 +22,19 @@ public class BizppurioKakaoAtAPI {
     })
     public String sendAlimtalk(@ApiParam(value = "알림톡 타입 at or ai", required = true) @RequestParam String a_type,
                                @ApiParam(value = "직접 부여하는 키 값", required = true) @RequestParam String b_refkey,
-                               @ApiParam(value = "수신자 번호", required = true) @RequestParam String c_to,
-                               @ApiParam(value = "메세지 내용", required = true) @RequestParam String d_message,
-                               @ApiParam(value = "카카오 발신 프로필 키", required = true) @RequestParam String e_senderkey,
-                               @ApiParam(value = "템플릿 코드", required = true) @RequestParam String f_templatecode,
-                               @ApiParam(value = "버튼 정보", required = false) @RequestBody List<ButtonVO> buttons
+                               @ApiParam(value = "수신 번호", required = true) @RequestParam String c_to,
+                               @ApiParam(value = "발신 번호", required = true) @RequestParam String d_from,
+                               @ApiParam(value = "메세지 내용", required = true) @RequestParam String e_message,
+                               @ApiParam(value = "카카오 발신 프로필 키", required = true) @RequestParam String f_senderkey,
+                               @ApiParam(value = "템플릿 코드", required = true) @RequestParam String g_templatecode,
+                               @ApiParam(value = "버튼 이름", required = false) @RequestParam String h_button_type,
+                               @ApiParam(value = "버튼 타입", required = false) @RequestParam String i_button_name,
+                               @ApiParam(value = "url_pc (WL 타입일 경우 필수)", required = false) @RequestParam(required = false) String j_url_pc,
+                               @ApiParam(value = "url_mobile (WL 타입일 경우 필수)", required = false) @RequestParam(required = false) String k_url_mobile,
+                               @ApiParam(value = "scheme_android (AL 타입일 경우 필수)", required = false) @RequestParam(required = false) String l_scheme_android,
+                               @ApiParam(value = "scheme_ios (AL 타입일 경우 필수)", required = false) @RequestParam(required = false) String m_scheme_ios
+                               //@ApiParam(value = "추가적인 상담톡 정보 (BC, BT 타입일 경우 필수)", required = false) @RequestParam(required = false) String chat_extra,
+                               //@ApiParam(value = "봇 전환 이벤트 정보 (BT 타입일 경우 필수)", required = false) @RequestParam(required = false) String chat_event
     ) {
         MessageVO vo = new MessageVO();
         RequestService rq = new RequestService();
@@ -34,13 +42,31 @@ public class BizppurioKakaoAtAPI {
         vo.setType(a_type);
         vo.setRefkey(b_refkey);
         vo.setTo(c_to);
-        vo.setMessage(d_message);
-        vo.setSenderkey(e_senderkey);
-        vo.setTemplatecode(f_templatecode);
-        vo.setButtons(buttons);
+        vo.setFrom(d_from);
+        vo.setMessage(e_message);
+        vo.setSenderkey(f_senderkey);
+        vo.setTemplatecode(g_templatecode);
 
-        //return "";
+        ButtonVO buttonVO = new ButtonVO();
+        buttonVO.setName(i_button_name);
+        buttonVO.setType(h_button_type);
+
+        switch (h_button_type) {
+            case "WL":
+                buttonVO.setUrl_pc(j_url_pc);
+                buttonVO.setUrl_mobile(k_url_mobile);
+                break;
+            case "AL":
+                buttonVO.setScheme_android(l_scheme_android);
+                buttonVO.setScheme_ios(m_scheme_ios);
+                break;
+        }
+
+        // 단일 버튼을 리스트에 추가
+        vo.setButtons(List.of(buttonVO));
+
         return send.sendMessage(rq.makeAtRequest(vo));
+    }
     }
 
     /*
@@ -91,4 +117,3 @@ public class BizppurioKakaoAtAPI {
         //return send.sendAllMessage(rq.makeAtRequest(vo));
     }
 */
-}
